@@ -12,9 +12,16 @@ st.title("Prediction of Approximate Salary using Random Forest Regression Predic
 
 # User input form
 st.write("Enter input values for prediction:")
-user_input = {}
-for feature in selected_features:
-    user_input[feature] = st.number_input(f"{feature}", value=0)
+# user_input = {}
+# for feature in selected_features:
+#     user_input[feature] = st.number_input(f"{feature}", value=0)
+cities = ['Agra', 'Jodhpur', 'Madurai', 'Nashik', 'Raipur']
+selected_city = st.selectbox("Select City", cities)
+
+# One-hot encode manually
+for city in cities:
+    user_input[f"City_{city}"] = 1.0 if selected_city == city else 0.0
+
 
 # Convert to DataFrame
 input_df = pd.DataFrame([user_input])
